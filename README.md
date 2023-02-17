@@ -1,6 +1,7 @@
 # kms two
 
 TO DO:
-- change grid by click (make click button)
 - fill grid with two colors
 - compare 2 colors
+- from a certain point onwards - grid items go off limits of the grid container - maybe introduce a last level
+- beautification
