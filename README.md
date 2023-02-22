@@ -1,7 +1,8 @@
 # kms two
 
 TO DO:
-- fill grid with two colors
+- fix bug: color1 = color2 is not allowed
 - compare 2 colors
-- from a certain point onwards - grid items go off limits of the grid container - maybe introduce a last level
+- introduce a last level
+- chose color palette to be compared
 - beautification
