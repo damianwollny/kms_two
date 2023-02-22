@@ -1,10 +1,14 @@
 // global variables
 const grid = document.getElementById("grid");
 let counter = 3;
+let color1 = 0;
+let color2 = 0;
+let grid_array = [];
 
 // event listeners
-document.getElementById("b1").addEventListener("click", green_clicked);
-document.getElementById("b2").addEventListener("click", red_clicked);
+document.getElementById("blue").addEventListener("click", blue_clicked);
+document.getElementById("yellow").addEventListener("click", yellow_clicked);
+document.getElementById("restart").addEventListener("click", reset_level);
 
 // change the dimensions of the grid
 function style_grid_container(dim){
@@ -16,7 +20,7 @@ function style_grid_container(dim){
 function make_grid_items(col_row_num){
     remove_divs("grid-item");
     for(let i = 0; i < (col_row_num ** 2); i++){
-        let item = document.createElement("div");
+        const item = document.createElement("div");
         item.setAttribute("class", "grid-item");
         item.setAttribute("id", i+1);
         grid.appendChild(item);
@@ -32,10 +36,51 @@ function remove_divs(classname){
     }
 }
 
+// color grid items:
+// col_row_num = number of rows/cols of the grid
+// dif1:dif2 = ratio between the different colors
+// dif1:dif2 ratio is equivalent to difficulty of game (see Halberda et al)
+function color_items(col_row_num, dif1, dif2){
+    const dim = col_row_num ** 2;
+    const frac = Math.floor(dim / (dif1+dif2))
+    const ran_num = Math.round(Math.random())
+    // randomly pick if dif1 is color1 or color2
+    if (ran_num == 1) {
+        color1 = dif1 * frac
+        color2 = dif2 * frac
+        color1 = color1 + (dim-(color1+color2))
+    }else{
+        color1 = dif2 * frac
+        color2 = dif1 * frac 
+        color1 = color1 + (dim-(color1+color2))
+    }
+    // generate an array of length: 1:(color1+color2)
+    grid_array = Array.from({length: (color1+color2)}, (_, i) => i + 1);
+    // shuffle the grid_array
+    let shuffled_array = shuffle(grid_array);
+    console.log(shuffled_array);
+    console.log(shuffled_array.slice(0, color1));
+    console.log(shuffled_array.slice(color1,));
+    // color the first "color1" items of array with the first color
+    let color1_array = shuffled_array.slice(0, color1);
+    for (let a = 0; a < color1_array.length; a++) {
+        // color grid yellow - 
+        document.getElementById(color1_array[a]).style.backgroundColor = "yellow"
+    };
+    // color the other "color2" items of array with the 2nd color
+    let color2_array = shuffled_array.slice(color1,)
+    for (let b = 0; b < color2_array.length; b++) {
+        // color grid blue - 
+        document.getElementById(color2_array[b]).style.backgroundColor = "blue"
+    };
+}
+
 // go up one level
 function level_up(col_row_num){
     style_grid_container(col_row_num)
     make_grid_items(col_row_num);
+    color_items(col_row_num, 7,8)
+    // go up one level= counter++
     counter++;
 }
 
@@ -43,17 +88,32 @@ function level_up(col_row_num){
 function reset_level(){
     style_grid_container(2);
     make_grid_items(2);
+    color_items(2, 1, 3);
     counter = 3;
 }
 
-// green button clicked
-function green_clicked(){
+// blue button clicked
+function blue_clicked(){
     level_up(counter);
 }
 
-// red button clicked
-function red_clicked(){
-    reset_level();
+// yellow button clicked
+function yellow_clicked(){
+    level_up(counter);
+}
+
+// shuffle array
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
 }
 
 reset_level();
+
+
