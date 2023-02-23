@@ -9,7 +9,6 @@ let grid_array = [];
 // event listeners
 document.getElementById("blue").addEventListener("click", blue_clicked);
 document.getElementById("yellow").addEventListener("click", yellow_clicked);
-document.getElementById("restart").addEventListener("click", reset_level);
 
 // change the dimensions of the grid
 function style_grid_container(dim){
@@ -86,13 +85,13 @@ function color_items(col_row_num, dif1, dif2){
     let color1_array = shuffled_array.slice(0, color1);
     for (let a = 0; a < color1_array.length; a++) {
         // color grid yellow - 
-        document.getElementById(color1_array[a]).style.backgroundColor = "yellow"
+        document.getElementById(color1_array[a]).style.backgroundColor = "#f6d55c"
     };
     // color the other "color2" items of array with the 2nd color
     let color2_array = shuffled_array.slice(color1,)
     for (let b = 0; b < color2_array.length; b++) {
         // color grid blue - 
-        document.getElementById(color2_array[b]).style.backgroundColor = "blue"
+        document.getElementById(color2_array[b]).style.backgroundColor = "#219ebc"
     };
 }
 
@@ -101,13 +100,14 @@ function level_up(col_row_num){
     style_grid_container(col_row_num)
     make_grid_items(col_row_num);
     if (difficulty == 1) {
-        color_items(col_row_num, 1,2) // <- add difficulty here
+        color_items(col_row_num, 1,2) 
     } else if(difficulty == 2) {
-        color_items(col_row_num, 3,4) // <- add difficulty here
+        color_items(col_row_num, 3,4) 
     } else if (difficulty == 3) {
-        color_items(col_row_num, 7,8) // <- add difficulty here
+        color_items(col_row_num, 20,21)
     } 
-    if (counter <=5) {
+    // upper limit: level 
+    if (counter <=10) {
         counter++;
     }else{
         reset_level()
@@ -116,7 +116,6 @@ function level_up(col_row_num){
         if (difficulty > 3) {
             alert("Gewonnen")
             reset_level();
-            difficulty = 1;
             document.getElementById("title").innerHTML = "LEVEL: " + difficulty
         }
     }
@@ -129,6 +128,7 @@ function reset_level(){
     make_grid_items(2);
     color_items(2, 1, 3);
     counter = 3;
+    difficulty = 1;
 }
 
 
