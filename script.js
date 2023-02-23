@@ -12,6 +12,7 @@ document.getElementById("restart").addEventListener("click", reset_level);
 
 // change the dimensions of the grid
 function style_grid_container(dim){
+    console.log("dim=", dim);
     grid.style.gridTemplateColumns = "repeat("+dim+", 1fr)";
     grid.style.gridTemplateRows = "repeat("+dim+", 1fr)";
 }
@@ -86,11 +87,15 @@ function color_items(col_row_num, dif1, dif2){
 
 // go up one level
 function level_up(col_row_num){
+    console.log("col_row_num=",col_row_num)
     style_grid_container(col_row_num)
     make_grid_items(col_row_num);
     color_items(col_row_num, 7,8) // <- add difficulty here
-    // go up one level= counter++
-    counter++;
+    if (counter <= 20) {
+        ++counter;
+    }else{
+        reset_level()
+    }
 }
 
 // reset/restart game 
@@ -99,6 +104,13 @@ function reset_level(){
     make_grid_items(2);
     color_items(2, 1, 3);
     counter = 3;
+}
+
+// initialize game
+function init(){
+    style_grid_container(2);
+    make_grid_items(2);
+    color_items(2, 1, 3)
 }
 
 // blue button clicked
@@ -123,6 +135,6 @@ function shuffle(a) {
     return a;
 }
 
-reset_level();
+init();
 
 
