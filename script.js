@@ -1,6 +1,7 @@
 // global variables
 const grid = document.getElementById("grid");
 let counter = 3;
+let difficulty = 1;
 let color1 = 0;
 let color2 = 0;
 let grid_array = [];
@@ -33,6 +34,18 @@ function remove_divs(classname){
     while(elements.length > 0){
         elements[0].parentNode.removeChild(elements[0]);
     }
+}
+
+// shuffle array
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
 }
 
 // --- color grid items:
@@ -87,12 +100,27 @@ function color_items(col_row_num, dif1, dif2){
 function level_up(col_row_num){
     style_grid_container(col_row_num)
     make_grid_items(col_row_num);
-    color_items(col_row_num, 1,3) // <- add difficulty here
-    if (counter <= 20) {
-        ++counter;
+    if (difficulty == 1) {
+        color_items(col_row_num, 1,2) // <- add difficulty here
+    } else if(difficulty == 2) {
+        color_items(col_row_num, 3,4) // <- add difficulty here
+    } else if (difficulty == 3) {
+        color_items(col_row_num, 7,8) // <- add difficulty here
+    } 
+    if (counter <=5) {
+        counter++;
     }else{
         reset_level()
+        difficulty++;
+        document.getElementById("title").innerHTML = "LEVEL: " + difficulty
+        if (difficulty > 3) {
+            alert("Gewonnen")
+            reset_level();
+            difficulty = 1;
+            document.getElementById("title").innerHTML = "LEVEL: " + difficulty
+        }
     }
+    console.log("difficulty=", difficulty, "level=", counter)
 }
 
 // reset/restart game 
@@ -103,12 +131,6 @@ function reset_level(){
     counter = 3;
 }
 
-// initialize game
-function init(){
-    style_grid_container(2);
-    make_grid_items(2);
-    color_items(2, 1, 3)
-}
 
 // blue button clicked
 function blue_clicked(){
@@ -130,16 +152,11 @@ function yellow_clicked(){
     }
 }
 
-// shuffle array
-function shuffle(a) {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
-    }
-    return a;
+// initialize game
+function init(){
+    style_grid_container(2);
+    make_grid_items(2);
+    color_items(2, 1, 3)
 }
 
 init();
