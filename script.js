@@ -99,6 +99,7 @@ function color_items(col_row_num, dif1, dif2){
 function level_up(col_row_num){
     style_grid_container(col_row_num)
     make_grid_items(col_row_num);
+    // coloring based on difficulty
     if (difficulty == 1) {
         color_items(col_row_num, 1,2) 
     } else if(difficulty == 2) {
@@ -106,15 +107,16 @@ function level_up(col_row_num){
     } else if (difficulty == 3) {
         color_items(col_row_num, 20,21)
     } 
-    // upper limit: level 
-    if (counter <=10) {
+    // upper limit for level set here:
+    if (counter <=5) {
         counter++;
+    // reset game upon winning
     }else{
         reset_level()
         difficulty++;
         document.getElementById("title").innerHTML = "LEVEL: " + difficulty
         if (difficulty > 3) {
-            alert("Gewonnen")
+            alert("Gewonnen");
             reset_level();
             document.getElementById("title").innerHTML = "LEVEL: " + difficulty
         }
@@ -129,6 +131,7 @@ function reset_level(){
     color_items(2, 1, 3);
     counter = 3;
     difficulty = 1;
+    document.getElementById("title").innerHTML = "LEVEL: " + difficultys
 }
 
 
@@ -137,8 +140,8 @@ function blue_clicked(){
     if (color1 < color2) {
         level_up(counter);
     } else {
-        alert("Leider falsch")
         reset_level();
+        alert("Leider falsch")
     }
 }
 
@@ -147,8 +150,8 @@ function yellow_clicked(){
     if (color1 > color2) {
         level_up(counter);
     } else {
-        alert("Leider falsch")
         reset_level();
+        alert("Leider falsch")
     }
 }
 
