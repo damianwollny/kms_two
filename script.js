@@ -36,31 +36,40 @@ function remove_divs(classname){
     }
 }
 
-// color grid items:
+// --- color grid items:
 // col_row_num = number of rows/cols of the grid
 // dif1:dif2 = ratio between the different colors
 // dif1:dif2 ratio is equivalent to difficulty of game (see Halberda et al)
 function color_items(col_row_num, dif1, dif2){
     const dim = col_row_num ** 2;
     const frac = Math.floor(dim / (dif1+dif2))
-    const ran_num = Math.round(Math.random())
     // randomly pick if dif1 is color1 or color2
+    const ran_num = Math.round(Math.random())
     if (ran_num == 1) {
         color1 = dif1 * frac
         color2 = dif2 * frac
-        color1 = color1 + (dim-(color1+color2))
+        // add the remainder to the larger(!) number
+        if (color1 > color2) {
+            color1 = color1 + (dim-(color1+color2))
+        }else{
+            color2 = color2 + (dim-(color1+color2))
+        }
     }else{
         color1 = dif2 * frac
         color2 = dif1 * frac 
-        color1 = color1 + (dim-(color1+color2))
+        // add the remainder to the larger(!) number
+        if (color1 > color2) {
+            color1 = color1 + (dim-(color1+color2))
+        }else{
+            color2 = color2 + (dim-(color1+color2))
+        }
     }
+    console.log("color1=", color1);
+    console.log("color2=", color2);
     // generate an array of length: 1:(color1+color2)
     grid_array = Array.from({length: (color1+color2)}, (_, i) => i + 1);
     // shuffle the grid_array
     let shuffled_array = shuffle(grid_array);
-    console.log(shuffled_array);
-    console.log(shuffled_array.slice(0, color1));
-    console.log(shuffled_array.slice(color1,));
     // color the first "color1" items of array with the first color
     let color1_array = shuffled_array.slice(0, color1);
     for (let a = 0; a < color1_array.length; a++) {
@@ -79,7 +88,7 @@ function color_items(col_row_num, dif1, dif2){
 function level_up(col_row_num){
     style_grid_container(col_row_num)
     make_grid_items(col_row_num);
-    color_items(col_row_num, 7,8)
+    color_items(col_row_num, 7,8) // <- add difficulty here
     // go up one level= counter++
     counter++;
 }
