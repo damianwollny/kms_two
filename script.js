@@ -12,7 +12,6 @@ document.getElementById("restart").addEventListener("click", reset_level);
 
 // change the dimensions of the grid
 function style_grid_container(dim){
-    console.log("dim=", dim);
     grid.style.gridTemplateColumns = "repeat("+dim+", 1fr)";
     grid.style.gridTemplateRows = "repeat("+dim+", 1fr)";
 }
@@ -25,7 +24,6 @@ function make_grid_items(col_row_num){
         item.setAttribute("class", "grid-item");
         item.setAttribute("id", i+1);
         grid.appendChild(item);
-        console.log(item)    
     }
 }
 
@@ -87,10 +85,9 @@ function color_items(col_row_num, dif1, dif2){
 
 // go up one level
 function level_up(col_row_num){
-    console.log("col_row_num=",col_row_num)
     style_grid_container(col_row_num)
     make_grid_items(col_row_num);
-    color_items(col_row_num, 7,8) // <- add difficulty here
+    color_items(col_row_num, 1,3) // <- add difficulty here
     if (counter <= 20) {
         ++counter;
     }else{
@@ -115,12 +112,22 @@ function init(){
 
 // blue button clicked
 function blue_clicked(){
-    level_up(counter);
+    if (color1 < color2) {
+        level_up(counter);
+    } else {
+        alert("Leider falsch")
+        reset_level();
+    }
 }
 
 // yellow button clicked
 function yellow_clicked(){
-    level_up(counter);
+    if (color1 > color2) {
+        level_up(counter);
+    } else {
+        alert("Leider falsch")
+        reset_level();
+    }
 }
 
 // shuffle array
