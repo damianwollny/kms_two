@@ -118,6 +118,7 @@ function level_up(col_row_num){
         if (difficulty > 3) {
             alert("Gewonnen");
             reset_level();
+            difficulty = 1;
             document.getElementById("title").innerHTML = "LEVEL: " + difficulty
         }
     }
@@ -130,7 +131,6 @@ function reset_level(){
     make_grid_items(2);
     color_items(2, 1, 3);
     counter = 3;
-    difficulty = 1;
     document.getElementById("title").innerHTML = "LEVEL: " + difficulty
 }
 
