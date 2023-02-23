@@ -108,7 +108,7 @@ function level_up(col_row_num){
         color_items(col_row_num, 20,21)
     } 
     // upper limit for level set here:
-    if (counter <=5) {
+    if (counter <=10) {
         counter++;
     // reset game upon winning
     }else{
@@ -131,7 +131,7 @@ function reset_level(){
     color_items(2, 1, 3);
     counter = 3;
     difficulty = 1;
-    document.getElementById("title").innerHTML = "LEVEL: " + difficultys
+    document.getElementById("title").innerHTML = "LEVEL: " + difficulty
 }
 
 
