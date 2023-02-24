@@ -1,4 +1,4 @@
-// --- With levels ---
+// --- No levels ---
 
 // global variables
 const grid = document.getElementById("grid");
@@ -102,29 +102,18 @@ function level_up(col_row_num){
     style_grid_container(col_row_num)
     make_grid_items(col_row_num);
     // coloring based on difficulty
-    if (difficulty == 1) {
-        color_items(col_row_num, 1,2) 
-    } else if(difficulty == 2) {
-        color_items(col_row_num, 3,4) 
-    } else if (difficulty == 3) {
-        color_items(col_row_num, 20,21)
-    } 
+    color_items(col_row_num, 7,8)
     // upper limit for level set here:
-    if (counter <=4) {
+    if (counter <=30) {
         counter++;
+        document.getElementById("title").innerHTML = "POINTS: " + (counter-2)
     // reset game upon winning
     }else{
+        alert("Gewonnen");
         reset_level()
-        difficulty++;
-        document.getElementById("title").innerHTML = "LEVEL: " + difficulty
-        if (difficulty > 3) {
-            alert("Gewonnen");
-            reset_level();
-            difficulty = 1;
-            document.getElementById("title").innerHTML = "LEVEL: " + difficulty
-        }
+        document.getElementById("title").innerHTML = "POINTS: " + (counter-2)
     }
-    console.log("difficulty=", difficulty, "level=", counter)
+    console.log("level=", counter)
 }
 
 // reset/restart game 
@@ -133,7 +122,7 @@ function reset_level(){
     make_grid_items(2);
     color_items(2, 1, 3);
     counter = 3;
-    document.getElementById("title").innerHTML = "LEVEL: " + difficulty
+    document.getElementById("title").innerHTML = "POINTS: " + (counter-2)
 }
 
 
@@ -142,9 +131,8 @@ function blue_clicked(){
     if (color1 < color2) {
         level_up(counter);
     } else {
-        difficulty = 1;
         reset_level();
-        alert("Leider falsch")
+        alert("Leider falsch\nPOINTS:" (counter-2))
     }
 }
 
@@ -153,7 +141,6 @@ function yellow_clicked(){
     if (color1 > color2) {
         level_up(counter);
     } else {
-        difficulty = 1;
         reset_level();
         alert("Leider falsch")
     }
