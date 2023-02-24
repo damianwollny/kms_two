@@ -104,12 +104,12 @@ function level_up(col_row_num){
     // coloring based on difficulty
     color_items(col_row_num, 7,8)
     // upper limit for level set here:
-    if (counter <=30) {
+    if (counter <=31) {
         counter++;
         document.getElementById("title").innerHTML = "POINTS: " + (counter-2)
     // reset game upon winning
     }else{
-        alert("Gewonnen");
+        alert("GEWONNEN\nPOINTS: " + (counter-2));
         reset_level()
         document.getElementById("title").innerHTML = "POINTS: " + (counter-2)
     }
@@ -131,8 +131,8 @@ function blue_clicked(){
     if (color1 < color2) {
         level_up(counter);
     } else {
+        alert("Leider falsch\nPOINTS: " + (counter-2))
         reset_level();
-        alert("Leider falsch\nPOINTS:" (counter-2))
     }
 }
 
@@ -141,8 +141,8 @@ function yellow_clicked(){
     if (color1 > color2) {
         level_up(counter);
     } else {
+        alert("Leider falsch\nPOINTS: " + (counter-2))
         reset_level();
-        alert("Leider falsch")
     }
 }
 
