@@ -106,12 +106,12 @@ function level_up(col_row_num){
     // upper limit for level set here:
     if (counter <=31) {
         counter++;
-        document.getElementById("title").innerHTML = "POINTS: " + (counter-2)
+        document.getElementById("title").innerHTML = "PUNKTE: " + (counter-2)
     // reset game upon winning
     }else{
-        alert("GEWONNEN\nPOINTS: " + (counter-2));
+        alert("GEWONNEN\nPUNKTE: " + (counter-2));
         reset_level()
-        document.getElementById("title").innerHTML = "POINTS: " + (counter-2)
+        document.getElementById("title").innerHTML = "PUNKTE: " + (counter-2)
     }
     console.log("level=", counter)
 }
@@ -122,7 +122,7 @@ function reset_level(){
     make_grid_items(2);
     color_items(2, 1, 3);
     counter = 3;
-    document.getElementById("title").innerHTML = "POINTS: " + (counter-2)
+    document.getElementById("title").innerHTML = "PUNKTE: " + (counter-2)
 }
 
 
@@ -131,7 +131,7 @@ function blue_clicked(){
     if (color1 < color2) {
         level_up(counter);
     } else {
-        alert("Leider falsch\nPOINTS: " + (counter-2))
+        alert("Leider falsch\nPUNKTE: " + (counter-2))
         reset_level();
     }
 }
@@ -141,7 +141,7 @@ function yellow_clicked(){
     if (color1 > color2) {
         level_up(counter);
     } else {
-        alert("Leider falsch\nPOINTS: " + (counter-2))
+        alert("Leider falsch\nPUNKTE: " + (counter-2))
         reset_level();
     }
 }
