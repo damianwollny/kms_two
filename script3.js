@@ -1,5 +1,5 @@
 // --- No levels ---
-// --- Random colors ---
+// --- More colors ---
 
 // global variables
 const grid = document.getElementById("grid");
