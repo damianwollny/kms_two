@@ -2,6 +2,7 @@
 
 TO DO:
 - in script2.js: blue - yellow into left - right
+- rearrange items / improve overall design
 
 MAYBE LATER:
 - maybe still too easy: adapt color_items()
