@@ -12,7 +12,84 @@ html {
     display: grid;
     justify-items: center;
 }
-
+/* Color choice layout */
+.color_choice_container{
+    display: grid;
+    grid-template-columns: repeat(8 , 1fr);
+    width: 400px;
+    gap: 10px;
+    padding: 5px;
+}
+.cp{
+    padding: 5px;
+    border-radius: 50%;
+    height: 30px;
+    border: 1px dotted grey;
+}
+#cp0{
+    background: linear-gradient(
+    to right,
+    #f6d55c 0%,
+    #f6d55c 50%,
+    #219ebc 50%,
+    #219ebc 100%)
+}
+#cp1{
+    background: linear-gradient(
+    to right,
+    #fb8500 0%,
+    #fb8500 50%,
+    #219ebc 50%,
+    #219ebc 100%)
+}
+#cp2{
+    background: linear-gradient(
+    to right,
+    #ffb703 0%,
+    #ffb703 50%,
+    #023047 50%,
+    #023047 100%)
+}
+#cp3{
+    background: linear-gradient(
+    to right,
+    #84a59d 0%,
+    #84a59d 50%,
+    #f6bd60 50%,
+    #f6bd60 100%)
+}
+#cp4{
+    background: linear-gradient(
+    to right,
+    #2a9d8f 0%,
+    #2a9d8f 50%,
+    #e76f51 50%,
+    #e76f51 100%)
+}
+#cp5{
+    background: linear-gradient(
+    to right,
+    #ff006e 0%,
+    #ff006e 50%,
+    #3a86ff 50%,
+    #3a86ff 100%)
+}
+#cp6{
+    background: linear-gradient(
+    to right,
+    #e5989b 0%,
+    #e5989b 50%,
+    #6d6875 50%,
+    #6d6875 100%)
+}
+#cp7{
+    background: linear-gradient(
+    to right,
+    #d00000 0%,
+    #d00000 50%,
+    #001219 50%,
+    #001219 100%)
+}
 /* Grid layout */
 .grid-container {
     justify-self: center;
@@ -50,10 +127,11 @@ html {
 #left_button {
     background-color: #219ebc;
     border-radius: 15%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+    
 }
 #right_button {
     background-color: #f6d55c;
     border-radius: 15%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }

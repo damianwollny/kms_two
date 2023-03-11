@@ -1,7 +1,6 @@
 # kms two
 
 TO DO:
-- color change only upon restart (not every level)
 - in script2.js: blue - yellow into left - right
 
 MAYBE LATER:

@@ -8,12 +8,25 @@ let difficulty = 1;
 let color1 = 0;
 let color2 = 0;
 let grid_array = [];
+let col1 = "#f6d55c";
+let col2 = "#219ebc";
 let colors_1 = ["#f6d55c", "#fb8500", "#ffb703", "#84a59d", "#2a9d8f", "#ff006e", "#e5989b", "#d00000"];
 let colors_2 = ["#219ebc", "#219ebc", "#023047", "#f6bd60", "#e76f51", "#3a86ff", "#6d6875", "#001219"];
 
 // event listeners
 document.getElementById("left_button").addEventListener("click", left_clicked);
 document.getElementById("right_button").addEventListener("click", right_clicked);
+for (let cp = 0; cp <= 7; cp++) {
+    document.getElementById("cp"+cp).addEventListener("click", function(){pick_color(cp)});
+}
+
+function pick_color(color_num){
+    col1 = colors_1[color_num]
+    col2 = colors_2[color_num]
+    console.log("col1 = ", col1);
+    console.log("col2 = ", col2);
+    reset_level()
+}
 
 // change the dimensions of the grid
 function style_grid_container(dim){
@@ -92,18 +105,19 @@ function color_items(col_row_num, dif1, dif2){
     var color_num = Math.floor(Math.random()*8);
     console.log(color_num);
     for (let a = 0; a < color1_array.length; a++) {
-        document.getElementById(color1_array[a]).style.backgroundColor = colors_1[color_num];
+        document.getElementById(color1_array[a]).style.backgroundColor = col1;
     };
     // color the other "color2" items of array with the 2nd color
     let color2_array = shuffled_array.slice(color1,)
     for (let b = 0; b < color2_array.length; b++) {
         // color grid blue - 
          // color grid item - pick a color pair from the array: colors1/2
-         document.getElementById(color2_array[b]).style.backgroundColor = colors_2[color_num]
+         document.getElementById(color2_array[b]).style.backgroundColor = col2;
     };
     // color buttons
-    document.getElementById("left_button").style.backgroundColor = colors_2[color_num];
-    document.getElementById("right_button").style.backgroundColor = colors_1[color_num];
+    document.getElementById("left_button").style.backgroundColor = col2;
+    document.getElementById("right_button").style.backgroundColor = col1;
+    console.log(col1)
 }
 
 // go up one level
