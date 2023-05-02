@@ -127,7 +127,7 @@ function level_up(col_row_num){
     // coloring based on difficulty
     color_items(col_row_num, 7,8)
     // upper limit for level set here:
-    if (counter <=31) {
+    if (counter <=51) {
         counter++;
         document.getElementById("title").innerHTML = "PUNKTE: " + (counter-2)
     // reset game upon winning
